@@ -1,0 +1,17 @@
+{% extends "home/base.html" %}
+
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static "lib/ihc-schedule/ihc-schedule.min.css" %}" />
+{% endblock %}
+
+{% block body %}
+<h2>{{ semester.title }}</h2>
+<div id="schedule"></div>
+
+<script src="{% static "lib/ihc-schedule/ihc-schedule.min.js" %}"></script>
+<script>
+IHCSchedule("schedule");
+</script>
+{% endblock %}
