@@ -10,8 +10,24 @@
 <h2>{{ semester.title }}</h2>
 <div id="schedule"></div>
 
-<script src="{% static "lib/ihc-schedule/ihc-schedule.min.js" %}"></script>
+<script
+			  src="http://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+<script src="{% static "lib/ihc-schedule/ihc-schedule.js" %}"></script>
 <script>
-IHCSchedule("schedule");
+let s = new IHCSchedule("schedule", {
+    startTime: 19,
+    endTime: 22,
+    colors: {
+      open: 'white',
+      rdg: '#C7FBCE',
+      occupied: 'rgb(186, 186, 186)'
+    }
+  }),
+  valueState = JSON.parse('{{ value_state|safe }}'),
+  colorState = JSON.parse('{{ color_state|safe }}');
+console.log(valueState, colorState);
+s.loadState(valueState, colorState);
 </script>
 {% endblock %}
