@@ -16,8 +16,8 @@ class SemesterSchedule(models.Model):
         'Semester',
         on_delete = models.CASCADE
     )
+    day = models.CharField(max_length=9)
     time = models.CharField(max_length=7)   # format: [hr]_[min][AM/PM]
-    day = models.PositiveSmallIntegerField()    # 0 for Monday, 6 for Sunday
     value = models.CharField(max_length=32, blank=True)
     type = models.CharField(max_length=32, blank=True)
 
@@ -51,8 +51,8 @@ class DancerSchedule(models.Model):
         'Auditionee',
         on_delete = models.CASCADE
     )
+    day = models.CharField(max_length=9)
     time = models.CharField(max_length=7)   # format: [hr]_[min][AM/PM]
-    day = models.PositiveSmallIntegerField()    # 0 for Monday, 6 for Sunday
     value = models.BooleanField(default=False)
 
     class Meta:
