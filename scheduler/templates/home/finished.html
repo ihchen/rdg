@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{% static "lib/ihc-schedule/ihc-schedule.min.css" %}" />
+<link rel="stylesheet" href="{% static "lib/ihc-schedule/dist/ihc-schedule.min.css" %}" />
 {% endblock %}
 
 {% block body %}
@@ -14,7 +14,7 @@
 			  src="http://code.jquery.com/jquery-3.2.1.min.js"
 			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 			  crossorigin="anonymous"></script>
-<script src="{% static "lib/ihc-schedule/ihc-schedule.js" %}"></script>
+<script src="{% static "lib/ihc-schedule/dist/ihc-schedule.min.js" %}"></script>
 <script>
 let s = new IHCSchedule("schedule", {
     startTime: 19,
@@ -25,9 +25,7 @@ let s = new IHCSchedule("schedule", {
       occupied: 'rgb(186, 186, 186)'
     }
   }),
-  valueState = JSON.parse('{{ value_state|safe }}'),
-  colorState = JSON.parse('{{ color_state|safe }}');
-console.log(valueState, colorState);
-s.loadState(valueState, colorState);
+  state = JSON.parse('{{ schedule_state|safe }}');
+s.loadState(state);
 </script>
 {% endblock %}

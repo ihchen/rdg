@@ -19,20 +19,19 @@ def home(request):
         else:
             schedule_data = SemesterSchedule.objects.filter(semester=curr.semester)
 
-            val_state = {}
-            col_state = {}
+            schedule_state = {}
             for sd in schedule_data:
-                if sd.value:
-                    if sd.time not in val_state:
-                        val_state[sd.time] = [''] * 7
-                    val_state[sd.time][sd.day] = sd.value
-                if sd.type:
-                    if sd.time not in col_state:
-                        col_state[sd.time] = [''] * 7
-                    col_state[sd.time][sd.day] = sd.type
+                if sd.day not in schedule_state:
+                    schedule_state[sd.day] = {}
+                if sd.time not in schedule_state[sd.day]:
+                    schedule_state[sd.day][sd.time] = {}
 
-            context_dict['value_state'] = json.dumps(val_state)
-            context_dict['color_state'] = json.dumps(col_state)
+                if sd.value:
+                    schedule_state[sd.day][sd.time]['value'] = sd.value
+                if sd.type:
+                    schedule_state[sd.day][sd.time]['color'] = sd.type
+
+            context_dict['schedule_state'] = json.dumps(schedule_state)
 
             return render(request, 'home/finished.html', context_dict)
 
