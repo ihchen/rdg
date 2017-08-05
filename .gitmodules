@@ -1,0 +1,3 @@
+[submodule "scheduler/static/lib/ihc-schedule"]
+	path = scheduler/static/lib/ihc-schedule
+	url = https://github.com/ihchen/weekly-schedule
